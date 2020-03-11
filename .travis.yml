@@ -6,7 +6,7 @@ language: generic
 services:
   - docker
 
-before_install:
+script:
   - docker build -t app .
   - docker images | grep app
 
