@@ -6,10 +6,16 @@ language: generic
 services:
   - docker
 
+
 script:
   - docker build -t app .
   - docker images | grep app
+  # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
+  # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
+  - echo $QUAY_USERNAME
 
+deploy:
+  provider: qu
 
 after_success:
  - echo "Build successful.
