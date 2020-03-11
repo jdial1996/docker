@@ -7,19 +7,20 @@ services:
   - docker
 
 env: 
+  - IMAGE_NAME="app"
 
 script:
   - docker build -t app .
   - docker images | grep app
   # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
   # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
-  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- -i app
+  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- "${IMAGE_NAME}"
 
-deploy:
-  provider: qu
+# deploy:
+#   provider: qu
 
 after_success:
  - echo "Build successful.
 
 after_failure:
- - echo "Build unsuccesful"
+ - echo "Build unsuccessful"
