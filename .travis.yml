@@ -13,7 +13,7 @@ script:
   - docker images | grep app
   # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
   # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
-  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- app
+  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- -i app
 
 deploy:
   provider: qu
