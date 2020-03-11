@@ -1,0 +1,18 @@
+# specifying the runtime language and version
+language: python
+python:
+  - "3.8.2"
+
+services:
+  - docker
+
+before_install:
+  docker build -t app .
+  docker images | grep app
+
+
+after_success:
+ - echo "Build successful.
+
+after_failure:
+ - echo "Build unsuccesful"
