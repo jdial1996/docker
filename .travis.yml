@@ -7,7 +7,7 @@ env:
   - IMAGE_NAME="app"
 
 script:
-  - docker build -t app .
+  - docker build .
   # - docker images | grep app
   # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
   # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
