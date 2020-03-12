@@ -1,4 +1,3 @@
-# Specify a base image
 FROM python:3-alpine
 # Install dependencies
 COPY ./requirements.txt ./
@@ -20,6 +19,6 @@ COPY ./ ./
 # Default command
 
 EXPOSE 5000
+
 ENTRYPOINT [ "python3" ]
 CMD ["app.py"]
-
