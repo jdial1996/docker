@@ -8,10 +8,12 @@ env:
 
 script:
   - docker build -t "${IMAGE_NAME}:ci" .
-  - docker images | grep app
-  # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
-  # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
+  - docker images | grep "${IMAGE_NAME}:ci"
   - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- "${IMAGE_NAME}:ci"
+  # - docker build -t quay.io/'${QUAY_USERNAME}'/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/'${QUAY_USERNAME}']/travis-quay-tutorial:latest .
+  - docker login quay.io --username '${QUAY_USERNAME}' --password '${QUAY_PASSWORD}'
+  - docker push quay.io/'${QUAY_USERNAME}'/docker
+  
 
 # deploy:
 #   provider: qu
