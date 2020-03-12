@@ -10,6 +10,7 @@ script:
   # - docker build -t "${IMAGE_NAME}:ci" .
   # - docker images | grep app
   # - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- "${IMAGE_NAME}:ci"
+  - echo '${QUAY_USERNAME}' '${QUAY_PASSWORD}'
   - docker build -t quay.io/'${QUAY_USERNAME}'/docker -t quay.io/'${QUAY_USERNAME}'/docker:latest .
   - docker login quay.io --username '${QUAY_USERNAME}' --password '${QUAY_PASSWORD}'
   - docker push quay.io/username/docker
