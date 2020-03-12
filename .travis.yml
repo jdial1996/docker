@@ -7,12 +7,11 @@ env:
   - IMAGE_NAME="app"
 
 script:
-  - docker build .
-  # - docker images | grep app
+  - docker build -t app:ci .
+  - docker images | grep app
   # - docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
   # - docker build -t quay.io/[yourusername]/travis-quay-tutorial:$TRAVIS_BRANCH -t quay.io/[yourusername]/travis-quay-tutorial:latest .
-  - docker images | awk '{print $1}' | awk 'NR==2'
-  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- -i f2a855684cc3 .
+  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- "${IMAGE_NAME}:ci" .
 
 # deploy:
 #   provider: qu
