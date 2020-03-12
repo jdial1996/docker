@@ -6,6 +6,12 @@ services:
 env: 
   - IMAGE_NAME="app"
 
+
+branches:
+  only:
+    - master
+
+
 script:
   # - docker build -t "${IMAGE_NAME}:ci" .
   # - docker images | grep app
@@ -15,8 +21,8 @@ script:
   - docker login quay.io --username ${QUAY_USERNAME} --password ${QUAY_PASSWORD}
   - docker push quay.io/${QUAY_USERNAME}/docker
 
-# deploy:
-#   provider: qu
+
+
 
 after_success:
  - echo "Build successful.
